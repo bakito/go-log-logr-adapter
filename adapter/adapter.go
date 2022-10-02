@@ -12,6 +12,13 @@ func ToStd(l logr.Logger) *log.Logger {
 	return log.New(&logrWriter{l: l}, "", 0)
 }
 
+// SetDefault sets the given logr as writer for the default logger
+func SetDefault(l logr.Logger) {
+	log.SetOutput(&logrWriter{l: l})
+	log.SetPrefix("")
+	log.SetFlags(0)
+}
+
 type logrWriter struct {
 	l logr.Logger
 }
